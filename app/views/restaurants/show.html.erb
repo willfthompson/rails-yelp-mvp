@@ -4,9 +4,17 @@ show.html.erb
 <h4><%= @restaurant.address %></h4>
 <h4><%= @restaurant.phone_number %></h4>
 <h4><%= @restaurant.category %></h4>
-<%= link_to "Add a review", new_restaurant_review_path(@restaurant.id) %>
+<%= simple_form_for [ @restaurant, @review ] do |f| %>
+<%= f.input :content %>
+<%= f.input :rating, collection: 0..5 %>
+<%= f.submit "Submit review", class: "btn btn-primary" %>
+<% end %>
+
 <% @restaurant.reviews.each do |review| %>
 <h4> <%= review.content %>  </h4>
 <h4><%= review.rating %></h4>
 <% end %>
+
+
+
 <%= link_to "Home", restaurants_path %>
