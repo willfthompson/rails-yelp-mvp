@@ -1,0 +1,12 @@
+show.html.erb
+
+<h1><%= @restaurant.name %></h1>
+<h4><%= @restaurant.address %></h4>
+<h4><%= @restaurant.phone_number %></h4>
+<h4><%= @restaurant.category %></h4>
+<%= link_to "Add a review", new_restaurant_review_path(@restaurant.id) %>
+<% @restaurant.reviews.each do |review| %>
+<h4> <%= review.content %>  </h4>
+<h4><%= review.rating %></h4>
+<% end %>
+<%= link_to "Home", restaurants_path %>
